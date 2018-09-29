@@ -2,20 +2,20 @@
 <html class="has-navbar-fixed-top has-navbar-fixed-bottom">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Hello Bulma!</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/pw.js"></script>
-	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-	<!-- <link rel="stylesheet" href="styles/debug.css"> -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello Bulma!</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/pw.js"></script>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="styles/debug.css"> -->
 
-	<!-- STYLE, NEED TO TAKE OFF TO SEPARATE .CSS -->
-	<style>
-		#selectors, #search{
+  <!-- STYLE, NEED TO TAKE OFF TO SEPARATE .CSS -->
+  <style>
+    .section{
 			padding: 1rem 1.5rem;
 		}
 		#search{
@@ -32,13 +32,17 @@
               vertical-align:middle;
               font-size: 12px;
             }
-			
+    #sorting{
+      text-align: center;
+    }
+		#sorting .material-icons{
+      font-size: 24px;
+    }
 			#add-event {
 				position: fixed;
 				bottom: 20px;
 				right: 20px;
-				background: rgb(255, 0, 0, 0.9);
-				background: rgba(255, 0, 0, 0.9);
+				background: rgb(249, 39, 39);
 				width: 50px;
 				height: 50px;
 				display: block;
@@ -57,9 +61,9 @@
 				color: #fff;
 				margin: 0;
 				position: relative;
-				left: 14px;
-    			top: 11px;
-    			font-size: 28px;
+				left: 6px;
+    			top: 6px;
+    			font-size: 39px;
 				-webkit-transition: all 0.3s ease;
 				-moz-transition: all 0.3s ease;
 				-ms-transition: all 0.3s ease;
@@ -67,121 +71,169 @@
 				transition: all 0.3s ease;
 			}
 			#add-event:hover {
-				background: rgb(255, 0, 0);
+				background: rgb(245, 15, 15);
 			}
 			#add-event:hover i {
 				color: #fff;
 				/* top: 5px; */
 			}
-
+      .navbar-burger i{
+        font-size: 28px;
+        color: white;
+      }
+      .button{
+        font-size: 0.9rem;
+      }
 	</style>
 </head>
 
 
 
 <body>
-	<!-- TOP NAVBAR -->
-	<div class="navbar is-fixed-top is-flex is-info">
-		<div class="container">
-			<div class="navbar-brand">
-				<a class="navbar-item">
-					<img src="img/mevent.png" alt="mevent" style="max-height: 36px;">
-				</a>
-				<span class="navbar-burger burger" data-target="navMenu">
-					<span></span>
-					<span></span>
-					<span></span>
-				</span>
-			</div>
-			<div id="navMenu" class="navbar-menu">
-				<div class="navbar-end">
-					<a href="#" class="navbar-item">Search</a>
-					<a href="#" class="navbar-item">About</a>
-					<a href="#" class="navbar-item is-hidden-touch">Settings</a>
-					<a href="#" class="navbar-item">Log-in</a>
-				</div>
-			</div>
-		</div>
-	</div>
+  <!-- TOP NAVBAR -->
+  <div class="navbar is-fixed-top is-flex is-info">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item">
+          <img src="img/mevent.png" alt="mevent" style="max-height: 36px;">
+        </a>
+        <a class="navbar-burger" style="text-align: center; font-size: 1.3rem; padding: 10px;color: white;">
+          <i class="fas fa-search fa-sm"></i>
+        </a>
+        <span class="navbar-burger burger" data-target="navMenu" style="margin-left:0px">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </div>
+      <div id="navMenu" class="navbar-menu">
+        <div class="navbar-end">
+          <a href="#" class="navbar-item">Search</a>
+          <a href="#" class="navbar-item">About</a>
+          <a href="#" class="navbar-item is-hidden-touch">Settings</a>
+          <a href="#" class="navbar-item">Log-in</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-	<!-- ALL, FAVORITES, MY -->
-	<section id="selectors" class="section has-background-light">
-		<div class="container">
-			<div class="columns is-mobile">
-				<div class="column">
-					<a class="button is-rounded is-fullwidth is-small is-info">All</a>
-				</div>
-				<div class="column">
-					<a class="button is-rounded is-fullwidth is-small">Favorites</a>
-				</div>
-				<div class="column">
-					<a class="button is-rounded is-fullwidth is-small">My</a>
-				</div>
-			</div>
-		</div>
-	</section>
+  <!-- ALL, FAVORITES, MY -->
+  <section id="selectors" class="section has-background-light">
+    <div class="container">
+      <div class="columns is-mobile">
+        <div class="column">
+          <a class="button is-rounded is-fullwidth is-info">All</a>
+        </div>
+        <div class="column">
+          <a class="button is-rounded is-fullwidth ">Favorites</a>
+        </div>
+        <div class="column">
+          <a class="button is-rounded is-fullwidth ">My</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<!-- SEARCH BAR -->
-	<section id="search" class="section has-background-light">
-		<div class="container">
+  <!-- SEARCH BAR -->
+  <!-- <section id="search" class="section has-background-light">
+    <div class="container">
 
-			<div class="content" style="padding: .75rem">
-				<div class="control has-icons-left has-icons-right">
-					<input class="input is-large" type="search" placeholder="Find event" /><span class="icon is-medium is-right"><i
-						 class="fa fa-search"></i>
-				</div>
-			</div>
+      <div class="content" style="padding: .75rem">
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-large" type="search" placeholder="Find event" /><span class="icon is-medium is-right"><i
+              class="fa fa-search"></i>
+        </div>
+      </div> -->
 
-		</div>
-	</section>
+    </div>
+  </section>
 
-	<!-- EVENTS -->
-	<section class="section has-background-light">
-		<div class="container">
-
-
-			<div class="columns is-multiline"></div>
-
-
-		</div>
-	</section>
-
-	
-
-	<!-- BOTTOM NAVBAR-->
-	<nav class="navbar is-info is-fixed-bottom is-hidden-desktop" role="navigation">
-		<div class="navbar-brand">
-			<a class="navbar-item is-expanded  is-block has-text-centered">
-				<i class="fa fa-user"></i>
-				<p class="is-size-7">Account</p>
-			</a>
-			<a href="https://staging.naviaddress.com/map" class="navbar-item is-expanded  is-block has-text-centered">
-				<i class="fa fa-map-marker-alt" style="color: #ff3c3c;"></i>
-				<p class="is-size-7">Create</p>
-			</a>
-
-			<a class="navbar-item is-expanded  is-block has-text-centered">
-				<i class="fa fa-cog"></i>
-				<p class="is-size-7">Settings</p>
-			</a>
-		</div>
-	</nav>
-
-	<a href="https://staging.naviaddress.com/map" id="add-event" class="is-hidden-touch"><i class="icon-plus"></i></a>
-
-
-	<script type="text/javascript">
-		(function () {
-			var burger = document.querySelector('.burger');
-			var nav = document.querySelector('#' + burger.dataset.target);
-			burger.addEventListener('click', function () {
-				burger.classList.toggle('is-active');
-				nav.classList.toggle('is-active');
-			});
-		})();
+  <!--SORTING-->
+  <section id="sorting" class="section has-background-light">
+    <div class="container" style="padding: 0 .75rem;">
+      <div class="columns has-background-white is-gapless" style="border-radius: 25px; padding: 5px;">
+        <div class="column">
+          <div class="columns is-mobile">
+            <div class="column">
+              <i class="material-icons">location_on</i>
+            </div>
+            <div class="column">
+              <i class="material-icons">timer</i>
+            </div>
+            <div class="column">
+              <i class="material-icons"> timer_off </i>
+            </div>
+            <div class="column">
+              <i class="material-icons"> sort_by_alpha </i>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="columns is-mobile">
+            <div class="column">
+              <i class="material-icons"> remove_red_eye </i>
+            </div>
+            <div class="column">
+              <i class="material-icons"> star </i>
+            </div>
+            <div class="column">
+              <i class="material-icons"> supervised_user_circle </i>
+            </div>
+            <div class="column">
+              <i class="material-icons"> attach_money </i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- EVENTS -->
+  <section class="section has-background-light" style="padding: 2.5rem 1.5rem;">
+    <div class="container">
 
 
-	</script>
+      <div class="columns is-multiline"></div>
+
+
+    </div>
+  </section>
+
+
+
+  <!-- BOTTOM NAVBAR-->
+  <nav class="navbar is-info is-fixed-bottom is-hidden-desktop" role="navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item is-expanded  is-block has-text-centered">
+        <i class="fa fa-search-plus"></i>
+        <p class="is-size-7">Filter</p>
+      </a>
+      <a href="https://staging.naviaddress.com/map" class="navbar-item is-expanded  is-block has-text-centered">
+        <i class="fa fa-map-marker-alt" style="color: #ff3c3c;"></i>
+        <p class="is-size-7">Create</p>
+      </a>
+
+      <a class="navbar-item is-expanded  is-block has-text-centered">
+        <i class="fa fa-cog"></i>
+        <p class="is-size-7">Settings</p>
+      </a>
+    </div>
+  </nav>
+
+  <a href="https://staging.naviaddress.com/map" id="add-event" class="is-hidden-touch"><i class="material-icons">add</i></a>
+
+
+  <script type="text/javascript">
+    (function () {
+      var burger = document.querySelector('.burger');
+      var nav = document.querySelector('#' + burger.dataset.target);
+      burger.addEventListener('click', function () {
+        burger.classList.toggle('is-active');
+        nav.classList.toggle('is-active');
+      });
+    })();
+
+
+  </script>
 </body>
 <!-- <footer class="footer">
 

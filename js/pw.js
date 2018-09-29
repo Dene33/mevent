@@ -220,7 +220,7 @@ function showResults(coords, list, address) {
               <p style="font-size:0.7rem; margin-top:12;">
                 <br>
                 <a href="">
-                  <i class="material-icons">favorite_border</i>
+                  <i class="far fa-star"></i>
                   ${item.count_favorites}
                 </a>
               </p>
