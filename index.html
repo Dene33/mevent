@@ -84,6 +84,13 @@
       .button{
         font-size: 0.9rem;
       }
+      #sorting a{
+        color: #4a4a4a;
+      }
+      .navbar input{
+        display: none;
+      }
+      
 	</style>
 </head>
 
@@ -94,10 +101,13 @@
   <div class="navbar is-fixed-top is-flex is-info">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item">
+        <a href="index.html" class="navbar-item">
           <img src="img/mevent.png" alt="mevent" style="max-height: 36px;">
         </a>
-        <a class="navbar-burger" style="text-align: center; font-size: 1.3rem; padding: 10px;color: white;">
+        <a href="javascript:" class="navbar-burger search" style="text-align: center; font-size: 1.3rem; padding: 10px;color: white;">
+          <form id="search-form-mobile">
+            <input class="input" id="search-mobile" type="text" placeholder="Search event...">
+          </form>
           <i class="fas fa-search fa-sm"></i>
         </a>
         <span class="navbar-burger burger" data-target="navMenu" style="margin-left:0px">
@@ -108,9 +118,14 @@
       </div>
       <div id="navMenu" class="navbar-menu">
         <div class="navbar-end">
-          <a href="#" class="navbar-item">Search</a>
+          <a href="#" id="test" class="navbar-item is-hidden-touch search">
+            <form id="search-form-desktop">
+              <input class="input" id="search-desktop" type="text" placeholder="Search event...">
+            </form>
+            Search
+          </a>
           <a href="#" class="navbar-item">About</a>
-          <a href="#" class="navbar-item is-hidden-touch">Settings</a>
+          <a href="#" class="navbar-item">Settings</a>
           <a href="#" class="navbar-item">Log-in</a>
         </div>
       </div>
@@ -145,8 +160,10 @@
         </div>
       </div> -->
 
-    </div>
+  </div>
   </section>
+
+
 
   <!--SORTING-->
   <section id="sorting" class="section has-background-light">
@@ -155,32 +172,48 @@
         <div class="column">
           <div class="columns is-mobile">
             <div class="column">
-              <i class="material-icons">location_on</i>
+              <a href="" class="has-text-grey-dark">
+                <i class="material-icons"> sort_by_alpha </i>
+              </a>
             </div>
             <div class="column">
-              <i class="material-icons">timer</i>
+              <a href="" class="has-text-grey-dark">
+                <i class="material-icons">timer</i>
+              </a>
             </div>
             <div class="column">
-              <i class="material-icons"> timer_off </i>
+              <a href="" class="has-text-grey-dark">
+                <i class="material-icons"> timer_off </i>
+              </a>
             </div>
             <div class="column">
-              <i class="material-icons"> sort_by_alpha </i>
+              <a href="" class="has-text-grey-dark">
+                <i class="material-icons">location_on</i>
+              </a>
             </div>
           </div>
         </div>
         <div class="column">
           <div class="columns is-mobile">
             <div class="column">
-              <i class="material-icons"> remove_red_eye </i>
+              <a href="" class="has-text-grey-dark">
+                <i class="material-icons"> supervised_user_circle </i>
+              </a>
             </div>
             <div class="column">
-              <i class="material-icons"> star </i>
+              <a href="" class="has-text-grey-dark">
+                <i class="material-icons"> star </i>
+              </a>
             </div>
             <div class="column">
-              <i class="material-icons"> supervised_user_circle </i>
+              <a href="" class="has-text-grey-dark">
+                <i class="material-icons"> remove_red_eye </i>
+              </a>
             </div>
             <div class="column">
-              <i class="material-icons"> attach_money </i>
+              <a href="" class="has-text-grey-dark">
+                <i class="material-icons"> attach_money </i>
+              </a>
             </div>
           </div>
         </div>
@@ -192,7 +225,7 @@
     <div class="container">
 
 
-      <div class="columns is-multiline"></div>
+      <div id="events-main" class="columns is-multiline"></div>
 
 
     </div>
@@ -203,18 +236,19 @@
   <!-- BOTTOM NAVBAR-->
   <nav class="navbar is-info is-fixed-bottom is-hidden-desktop" role="navigation">
     <div class="navbar-brand">
-      <a class="navbar-item is-expanded  is-block has-text-centered">
-        <i class="fa fa-search-plus"></i>
-        <p class="is-size-7">Filter</p>
+      <a href="javascript:" id="return-to-top" class="navbar-item is-expanded  is-block has-text-centered">
+        <i class="fas fa-arrow-circle-up"></i>
+        <p class="is-size-7">To top</p>
       </a>
+
       <a href="https://staging.naviaddress.com/map" class="navbar-item is-expanded  is-block has-text-centered">
         <i class="fa fa-map-marker-alt" style="color: #ff3c3c;"></i>
         <p class="is-size-7">Create</p>
       </a>
 
       <a class="navbar-item is-expanded  is-block has-text-centered">
-        <i class="fa fa-cog"></i>
-        <p class="is-size-7">Settings</p>
+        <i class="fa fa-search-plus"></i>
+        <p class="is-size-7">Filters</p>
       </a>
     </div>
   </nav>
@@ -232,6 +266,58 @@
       });
     })();
 
+    $('#return-to-top').click(function () {      // When arrow is clicked
+      $('body,html').animate({
+        scrollTop: 0                       // Scroll to top of body
+      }, 500);
+    });
+
+    $('.search').click(function () {
+      $('.search').css({
+        'width': '100%',
+        'transition': 'all 0.7s 0.1s ease',
+      });
+      $('.search input').css({
+        'width': '100%',
+        'display': 'inline-block',
+        'transition': 'all 0.7s 0.1s ease',
+      });
+      $('.search svg').css({
+        'display': 'none',
+      });
+      $('.search input').focus();
+    });
+
+    $('.search input').blur(function () {
+      $('.search').css({
+        'width': '3.25rem',
+        'transition': 'all 0.7s 0.0s ease',
+      });
+      $('.search input').css({
+        'width': '3.25rem',
+        'display': 'none',
+        'transition': 'all 0.7s 0.0s ease',
+        // 'transition': 'all 0.5s 0.8s ease',
+      });
+      $('.search svg').css({
+        'display': 'inline-block',
+      });
+    })
+
+    $('.search').on('submit', function (e) {
+      e.preventDefault();
+      querystr1 = document.getElementById('search-mobile').value;
+      querystr2 = document.getElementById('search-desktop').value;
+      // console.log(querystr1+querystr2)
+      searchName(querystr1,querystr2);
+      input.blur();
+    })
+
+    // $(document).on('keydown', '#search-mobile,#search-desktop', function (e) {
+    //   if (e.which === 13) {
+    //     searchName();
+    //   }
+    // });
 
   </script>
 </body>

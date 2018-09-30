@@ -5,6 +5,8 @@ const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
 const DELTA = 1; // Граница выбора объектов (в градусах)
 const LIMIT = 5;   // Ограничение на количество возвращаемых объектов
 
+// document.getElementById("searchname").addEventListener("click",searchName);
+
 main();
 
 async function main() {
@@ -62,6 +64,49 @@ function getList(/*token, */rect) {
     };
     url.search = new URLSearchParams(params);
 
+    fetch(url).then((res1) =>
+      res1.json().then((res2) => resolve(res2.result))
+    );
+  });
+}
+
+console.log(window.innerWidth);
+
+async function searchName(querystr1,querystr2) {
+  // e.preventDefault();
+  let coords = await getLocation();
+  if (window.innerWidth <= 1087) {
+    querystr = querystr1;
+    console.log("str: "+querystr)
+  }
+  else {
+    querystr = querystr2;
+    console.log("str: "+querystr)
+  };
+  // let querystr = document.getElementById('search-mobile').value;
+  console.log('Search str: ' + querystr);
+  let list = await searchList(coords, querystr);
+  console.log('search' + list);
+  clearResults('#events-main');
+  showResults(coords, list);
+}
+
+function clearResults(cont) {
+  $(cont).empty()
+}
+
+function searchList(coords, querystr) {
+  return new Promise((resolve, reject) => {
+    let url = new URL('https://staging-api.naviaddress.com/api/v1.5/Addresses/Search');
+    let params = {
+      address_type: 'event',
+      zoom: 17,
+      limit: LIMIT,
+      querystr: querystr,
+      lat: coords.latitude,
+      lng: coords.longitude
+    };
+    url.search = new URLSearchParams(params);
     fetch(url).then((res1) =>
       res1.json().then((res2) => resolve(res2.result))
     );
@@ -161,6 +206,9 @@ function truncateString(str, length) {
 
 // Отобразить результаты
 
+
+
+
 function showResults(coords, list, address) {
   // console.log("list 0:"+list[0])
   // chunks = chunk(list,4);
@@ -251,9 +299,7 @@ function showResults(coords, list, address) {
           </div>
         </div>
       </div>
-    </div>`).appendTo("div.columns.is-multiline:last");
+    </div>`).appendTo("#events-main");
   })
 
 }
-
-
