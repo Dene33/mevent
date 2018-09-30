@@ -308,9 +308,8 @@
       e.preventDefault();
       querystr1 = document.getElementById('search-mobile').value;
       querystr2 = document.getElementById('search-desktop').value;
-      // console.log(querystr1+querystr2)
       searchName(querystr1,querystr2);
-      input.blur();
+      $('.search').focus()
     })
 
     // $(document).on('keydown', '#search-mobile,#search-desktop', function (e) {
